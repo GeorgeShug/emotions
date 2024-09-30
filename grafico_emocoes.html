@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Emoções</title>
+    <!-- Importar a biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        canvas {
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="emotionChart" width="800" height="400"></canvas>
+
+    <script>
+        // Dados do gráfico: Emoções e suas frequências
+        const data = {
+            labels: ['Happy', 'Sad', 'Angry', 'Excited', 'Calm'],
+            datasets: [{
+                label: 'Frequency of Emotions',
+                data: [12, 5, 3, 8, 6],  // Frequências fictícias
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',  // Happy - cor aqua
+                    'rgba(255, 99, 132, 0.2)',  // Sad - cor vermelha
+                    'rgba(255, 159, 64, 0.2)',  // Angry - cor laranja
+                    'rgba(54, 162, 235, 0.2)',  // Excited - cor azul
+                    'rgba(153, 102, 255, 0.2)'  // Calm - cor roxa
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Configurações do gráfico
+        const config = {
+            type: 'bar',  // Tipo do gráfico: barra
+            data: data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Emotion Frequency Chart'  // Título do gráfico
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,  // Começa o eixo Y no zero
+                        title: {
+                            display: true,
+                            text: 'Frequency'  // Título do eixo Y
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Emotions'  // Título do eixo X
+                        }
+                    }
+                }
+            }
+        };
+
+        // Renderizar o gráfico no canvas
+        const ctx = document.getElementById('emotionChart').getContext('2d');
+        new Chart(ctx, config);
+    </script>
+</body>
+</html>
